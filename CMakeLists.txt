@@ -1,4 +1,4 @@
-project(webserver)
+project(final)
 cmake_minimum_required(VERSION 2.8)
 
 include(CheckCXXCompilerFlag)
@@ -46,5 +46,5 @@ add_library(libev SHARED IMPORTED)
 aux_source_directory(. SRC_LIST)
 add_executable(${PROJECT_NAME} ${SRC_LIST})
 
-target_link_libraries(webserver ev)
+target_link_libraries(final ev)
 
