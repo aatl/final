@@ -64,7 +64,7 @@ void WorkerServer::readClientData(ev::io &watcher, int revents)
                     const std::string &tmpPath = parser.getDirectory();
                     std::string filePath;
 
-                    auto haveParam = std::find(tmpPath.begin(), tmpPath.end(), '&');
+                    auto haveParam = std::find(tmpPath.begin(), tmpPath.end(), '?');
                     if(!tmpPath.empty()) {
                         if(tmpPath[0] == '/')
                             filePath = std::string(tmpPath.begin() + 1, haveParam);
@@ -72,6 +72,8 @@ void WorkerServer::readClientData(ev::io &watcher, int revents)
                             filePath = std::string(tmpPath.begin(), haveParam);
                     }
 
+
+                    std::cerr<<filePath.c_str()<<std::endl;
 
                     struct stat st;
                     int statcode = lstat((_rootDir + filePath).c_str(), &st);
