@@ -63,11 +63,13 @@ void WorkerServer::readClientData(ev::io &watcher, int revents)
 
                     const std::string &tmpPath = parser.getDirectory();
                     std::string filePath;
+
+                    auto haveParam = std::find(tmpPath.begin(), tmpPath.end(), '&');
                     if(!tmpPath.empty()) {
                         if(tmpPath[0] == '/')
-                            filePath = std::string(tmpPath.begin() + 1, tmpPath.end());
+                            filePath = std::string(tmpPath.begin() + 1, haveParam);
                         else
-                            filePath = tmpPath;
+                            filePath = std::string(tmpPath.begin(), haveParam);
                     }
 
 
